@@ -1,0 +1,6 @@
+
+<form method="post">
+        {% csrf_token %}
+        Do you really want to delete "{{ object }}"?
+        <button class="btn btn-primary" type="submit">Yes, remove it!</button>
+  </form>

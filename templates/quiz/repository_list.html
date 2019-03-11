@@ -1,0 +1,34 @@
+{% extends "account/faculty_profile.html" %}
+{% load staticfiles %}
+
+{% block main %}
+<h3>Question Repositories</h3> 
+
+
+<table class="table">
+  <thead>
+    <tr>
+        <th scope="col">Title</th>
+    </tr>   
+  </thead>
+  <tbody>
+    {% for repo in user.repos.all %}
+      <tr>
+        {% if repo.modules.all %}
+        <td><a href="{% url 'quiz:repo_detail' repo.id %}">{{ repo.title }}</a></td>
+        {% else %} 
+        <td><a href="{% url 'quiz:manage_repo' repo.id %}">{{ repo.title }}</a></td>
+        {% endif %}
+        <td><a href="{% url 'quiz:manage_repo' repo.id %}">Edit</a></td>
+      </tr>
+    {% empty %}
+    No Questions Repository exist !!
+    {% endfor %}
+  </tbody>
+</table>
+ 
+<p>
+<a href="{% url 'quiz:create_repo' %}" class="btn modal-trigger">CREATE REPOSITORY</a>
+</p>
+
+{% endblock %}

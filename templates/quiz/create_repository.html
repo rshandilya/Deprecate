@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="card">
+	<div class="card-content">
+
+	<h3>Create Repository</h3>
+	<form method="POST">
+	{{form.non_field_errors}}
+	<div class="input-filed">
+	    {{ form.title.errors }}
+	    <label for="{{ form.title.id_for_label }}">Title:</label>
+	    {{ form.title }}
+	</div>
+	<div class="input-filed">
+	    {{ form.slug.errors }}
+	    <label for="{{ form.slug.id_for_label }}">Slug:</label>
+	    {{ form.slug }}
+	</div>
+
+	{% csrf_token %}
+	<!--table>
+	{{form.as_table}}
+	</table-->
+	<input type="submit" value="Submit" class="btn">
+	</form>
+	</div>
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,31 @@
+{% extends "account/profile_base.html" %}
+{% load staticfiles %}
+
+{% block side_nav %}
+<img src="{% static "images/profile.png" %}" alt="Profile Pic" />
+
+<ul class="nav flex-column">
+<li class="nav-item">
+	<a class="nav-link" href="{% url 'account:active_quizes' %}" class="collection-item">Active Quizes</a>
+</li>
+<li class="nav-item">
+	<a class="nav-link" href=" " class="collection-item">Score Cards</a>
+</li>
+</ul>
+{% endblock%}
+
+{% block main %}
+<h2>Students Profile</h2>
+<h3> Name: {{user.get_full_name}}</h3>
+
+{% block main_content %}
+{% endblock %}
+
+{% endblock %}
+
+{% comment %}
+<h3>Score Card</h3>
+{% for sc in score_cards %}
+<li>{{sc.quiz_title}}</li>
+{% endfor %}
+{% endcomment %}

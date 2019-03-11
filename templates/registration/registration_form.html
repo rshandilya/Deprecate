@@ -1,0 +1,70 @@
+{% extends "registration/registration_base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Register for an account" %}{% endblock %}
+
+{% block form_content %}
+<h2>Register for PsiSquare</h2>
+
+<form method="post" action="">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+<p>{{ form.username.errors }}
+ 	<div class="mdc-form-field">        
+    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+		 <input type="text" name="username" maxlength="150" autofocus required id="id_username" 
+		 class="mdc-text-field__input"/>
+		 <label for="id_username" class="mdc-text-field__label">Username</label>
+		 <div class="mdc-text-field__bottom-line"></div> 
+    </div>
+    </div></p>
+
+<p>{{ form.email.errors }}
+	<div class="mdc-form-field">        
+    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+		<input type="email" name="email" required id="id_email" class="mdc-text-field__input"/>
+		<label  for="id_email" class="mdc-text-field__label">E-mail</label>
+		<div class="mdc-text-field__bottom-line"></div> 
+    </div>
+    </div>
+</p>
+
+<p>{{ form.password1.errors }}
+<div class="mdc-form-field">        
+    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+		<input type="password" name="password1" required id="id_password1" class="mdc-text-field__input"/>
+		<label for="id_password1" class="mdc-text-field__label">Password</label> 
+		<div class="mdc-text-field__bottom-line"></div> 
+    </div>
+	    <!-- p id="id_password1-helptext" class="mdc-text-field-helptext" aria-hidden="true">
+	       Use at least one letter, one numeral, and eight characters.
+	    </p-->
+    </div>
+</p>
+<p>{{ form.password2.errors }}
+	<div class="mdc-form-field">        
+    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+		<input type="password" name="password2" required id="id_password2" class="mdc-text-field__input"/>
+		<label for="id_password2" class="mdc-text-field__label">Confirm Password</label> 
+		<div class="mdc-text-field__bottom-line"></div> 
+    </div>
+      <!-- p id="id_password2-helptext" class="mdc-text-field-helptext" aria-hidden="true">
+      	Enter the same password as before, for verification
+	   </p -->
+    </div>
+</p>
+<p>  <button type="submit"
+            class="mdc-button
+                   mdc-button--raised
+                   mdc-ripple-surface"
+            data-mdc-auto-init="MDCRipple">
+      Submit
+    </button></p> 
+</form>
+{% endblock %}
+
+
+
+
+

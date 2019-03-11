@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<h3>Queestions Repositories List</h3>
+<p>
+{% for repo in repos %}
+   <li><a href="{% url 'quiz:manage_repo' repo.id %}">{{ repo.title }}</a></li>
+{% endfor %}
+
+<p><a href="{% url 'quiz:create_repo' %}">CREATE REPOSITORY</a></p>
+
+<h3>Quizes List</h3>
+{% for quiz in quizes %}
+   <li><a href="{% url 'quiz:start_quiz' quiz.id %}">{{ quiz.name }}</a></li>
+{% endfor %}
+<p>
+<a href="{% url 'quiz:create_quiz' %}">CREATE NEW QUIZ</a>
+</p>
+{% endblock %}
+</p>
+

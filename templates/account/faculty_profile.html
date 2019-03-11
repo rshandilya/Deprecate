@@ -1,0 +1,26 @@
+{% extends "account/profile_base.html" %}
+{% load staticfiles %}
+
+
+
+{% block side_nav %}
+
+<img src="{% static "images/profile.png" %}" alt="Profile Pic" />
+<ul class="nav flex-column">
+<li class="nav-item">
+	<a class="nav-link" href="{% url 'quiz:list_repo'%}" class="collection-item"><b>Repositories</b></a>
+</li>
+<li class="nav-item">
+	<a class="nav-link" href="{% url 'quiz:list_quiz'%}" class="collection-item"><b>Quizes</b></a>
+</li>
+<li class="nav-item">
+	<a class="nav-link" href="" class="collection-item"><b>Results</b></a>
+</li>
+</ul>
+{% endblock%}
+
+
+{% block main %}
+<h2>Faculty Profile</h2>
+<h3> Name: {{user.get_full_name}}</h3>
+{% endblock %}

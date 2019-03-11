@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+ {% block css %}
+ {% endblock %}
+
+{% block content %}
+<div class="container">
+<div class="row">
+    <div class="col-8">
+	<h4>Question Form</h4>
+
+	<form method="post">
+	{% csrf_token %}
+	{{ question_form.non_field_errors }}
+
+	<div class="form-group" id="mde">
+	    {{ question_form.question.errors }}
+	    <label for="{{ question_form.question.id_for_label }}">Question:</label>
+	    <textarea class="form-control" name="{{ question_form.question.name }}" cols="40" rows="10" maxlength="1000" required id="{{ question_form.question.id_for_label }}">
+</textarea>
+	    
+	</div>
+	<div class="form-group">
+	    {{ question_form.explanation.errors }}
+	    <label for="{{ question_form.explanation.id_for_label }}">Explanation:</label>
+	    <textarea class="form-control" name="{{question_form.explanation.name}}" cols="40" rows="10" maxlength="1000" id="id_explanation">
+        </textarea>
+	    </div>
+
+
+	{{ formset.management_form }}
+
+	{% for form in formset %}
+    
+    {% comment %}
+	{{ form.non_field_errors }}
+	<p>
+	<div class="form-group">
+	    {{ form.answer.errors }}
+	    <label for="{{form.answer.id_for_label }}">Answer:</label>
+	    <input class="form-control" type="text" name="{{ form.answer.name }}" maxlength="500" id="{{form.answer.id_for_label }}" maxlength="500" />    
+	</div>
+	<div>
+	<p>
+	    {{ form.is_correct.errors }}  
+	    <label for="{{form.is_correct.id_for_label }}">Correct</label>
+	    <input type="checkbox" name={{form.is_correct.name}} id="{{form.is_correct.id_for_label}}">       
+	</p> 
+	</div>
+	{% endcomment%}
+	{{form.as_p}}
+	{% endfor %}
+    
+	<input type="submit" value="Submit">
+	</form>
+    </div>
+    <div class="col">
+    	
+    </div>
+</div>
+</div>
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}
+

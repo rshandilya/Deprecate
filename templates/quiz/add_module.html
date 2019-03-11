@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<h3>Add Module</h3>
+<form method="POST">
+{% csrf_token %}
+{{ formset.management_form }}
+{% for form in formset %}
+   <p> {{form}}</p>
+{% endfor %}
+
+<input type="submit" name="Submit">
+</form>
+{% endblock %}
+

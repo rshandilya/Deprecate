@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="card">
+	<div class="card-content">
+	<h3>Create Quiz</h3>
+	<form method="POST">
+	{% csrf_token %}
+	{{form.non_field_errors}}
+	<div class="input-filed">
+	    {{ form.title.errors }}
+	    <label for="{{ form.title.id_for_label }}">Title:</label>
+	    {{ form.title }}
+	    {{ form.code.errors }}
+	    <label for="{{ form.code.id_for_label }}">Code:</label>
+	    {{ form.code }}
+	    {{ form.duration.errors }}
+	    <label for="{{ form.code.id_for_label }}">Durations:</label>
+	    {{ form.duration}}
+	     {{ form.duration.help_text}}
+	</div>
+	<!--table>
+	{{form.as_table}}
+	</table-->
+	<input type="submit" value="Submit" class="btn">
+	</form>
+	</div>
+</div>
+{% endblock %}
+

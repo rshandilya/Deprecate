@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="container">
+<div class="jumbotron">
+<h2>{{ quiz.title }}</h2>
+<hr> 
+<h4>Detail</h4>
+<b>Code:</b> {{quiz.code}} <br>  
+<b>Duration:</b> {{quiz.duration}} min<br>
+<b>Total Questions:</b> {{quiz.count_questions}}<br>
+<b>Total Marks:</b> {{quiz.get_total_marks}}<br>
+<b>Status:</b> 
+{% if quiz.status == 'U' %}
+<span>unpublished</span>
+<a href="{% url 'quiz:publish_quiz' quiz.id %}"><button>PUBLISH</button></a>
+{% elif quiz.status == 'P' %}
+<span>Published</span> 
+<a href=""><button>END</button></a> 
+{% endif %}
+</div>
+<h3>Questions List</h3>
+
+{% for q in quiz.questions.all %}
+<div class="card">
+<div class="card-body">
+{{q.question|linebreaks}}
+<a href="{% url 'quiz:remove_question_from_quiz' quiz.id q.id %}">Remove</a>
+</div>
+</div>
+{% endfor %}
+</div>
+{% endblock %}

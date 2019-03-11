@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<h3>Add Question</h3>
+<form method="POST">
+{% csrf_token %}
+<table>
+{{form.as_table}}
+</table>
+<input type="submit" value="Submit">
+</form>
+{% endblock %}
+

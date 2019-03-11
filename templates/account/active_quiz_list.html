@@ -1,0 +1,10 @@
+{% extends "account/student_profile.html" %}
+{% load staticfiles %}
+
+{% block main_content %}
+{% for q in active_quizes %}
+{{q.title}} <a href="{% url 'quiz:start_quiz' q.id %}"> START</a>
+{% empty %}
+No Active Quiz
+{% endfor %}
+{% endblock %}

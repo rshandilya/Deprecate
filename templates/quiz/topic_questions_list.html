@@ -1,0 +1,37 @@
+{% extends "quiz/repository_detail.html" %}
+{% load staticfiles %}
+
+{% block content_main %}
+<div class="container">
+<br>
+<p>
+<a href="{% url 'quiz:add_question' repository.id topic.id %}"  class="btn btn-primary">Add Question</a>
+<a class="btn btn-primary" href="">Delete</a>
+</p>
+<h3>{{repository.title}}</h3>
+<h5>List of Questions</h5>  
+{% for question in object_list %}
+<section class="card">
+<div class="card-body">
+<p>{{ question.question|linebreaks }}</p>
+<p>
+ <ol type="A">
+ 	{% for ans in question.answers.all %}
+ 	{% if ans.is_correct %}
+ 	<li><b>{{ans}}</b></li>
+ 	{% else %}
+ 	<li>{{ans}}</li>
+ 	{% endif %}
+ 	{% endfor %}	
+ </ol>
+</p>
+<a href="{% url 'quiz:add_question_to_quiz' repository.id topic.id question.id %}">Add to Quiz</a> &nbsp <a href="{% url 'quiz:delete_question' repository.id topic.id question.id %}">Del</a>
+</div>
+</section>
+{% endfor %}
+<p>
+
+</p>
+
+</div>
+{% endblock %}

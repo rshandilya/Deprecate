@@ -1,0 +1,32 @@
+{% extends "account/faculty_profile.html" %}
+{% load staticfiles %}
+
+{% block main %}
+<h3> List of Quizes</h3>
+<p>
+<table class="table">
+	<thead>
+		<tr>
+			<th scope="col">Name</th>
+			<th scope="col">Created On</th>
+			<th scope="col">Status</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+{% for quiz in user.quizes.all %}
+  <tr>
+  <td><a href="{% url 'quiz:quiz_detail' quiz.id %}">{{ quiz.title }}</a></td>
+  <td>{{ quiz.created_on }}</td>
+  <td>{{ quiz.status }}</td>
+  </tr>
+ {% empty %}
+ No Quiz 
+{% endfor %}
+</tbody>
+</table>
+</p>
+<p>
+<a class="btn btn-primary" href="{% url 'quiz:create_quiz' %}">CREATE QUIZ</a>
+</p>
+{% endblock %}

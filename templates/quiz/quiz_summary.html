@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<h2>Summary of Quiz</h2>
+<h4>Total No. of Questions:  {{summary.0}}</h4>
+<h4>Total No. of Attempts:  {{summary.1}}</h4>
+<h4>Total No. of Correct Attempts:  {{summary.2}}</h4>
+
+<p><a href="{% url 'quiz:exit_quiz' %}">EXIT</a></p>
+{% endblock %}

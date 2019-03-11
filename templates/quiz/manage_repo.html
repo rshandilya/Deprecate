@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="container">	    
+		<h2>Manage {{repo.title}}</h2>
+		
+			<h3>Content</h3> &nbsp   <a href="{% url 'quiz:add_modules' repo.id %}">ADD MODULES</a>
+        <p>
+			{% for module in repo.modules.all %}
+			<b> {{ module.title }}</b> &nbsp <a href="{% url 'quiz:add_topics' repo.id  module.id %}">Add Topic</a>
+			<p>
+			{% for topic in module.topic_set.all %}
+				<li>{{ topic.title }}</li>
+			{% endfor %}
+             </p>
+			{% empty %}
+			No Modules
+			{% endfor %}
+		</p>
+</div> 	    
+{% endblock %}
+
+
+<a href="{% url 'quiz:manage_repo' repo.id %}" class="btn">CONTENT</a> &nbsp 
+<a href="{% url 'quiz:repo_questions' repo.id %}" class="btn">QUESTIONS</a>
+{% block repo_content %}
+		<p><a href="{% url 'quiz:add_module' repo.id %}">ADD MODULE </a></p>
+
+		<p>Content List:</p>
+		<ul>
+		{% for module in repo.module_set.all %}
+			<li>{{ module.title }} &nbsp <a href="{% url 'quiz:delete_module' repo.id module.id %}">Del</a> &nbsp <a href="{% url 'quiz:add_topic' repo.id module.id %}">Add Topic</a> </li>
+			<ul>
+			{% for topic in module.topic_set.all %}
+				<li>{{ topic.title }}</li>
+			{% endfor %}
+			</ul>
+		{% endfor %}
+		</ul>
+      {% endblock %}

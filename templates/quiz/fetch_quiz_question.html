@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+
+{% block content %}
+<h3>Question list</h3>
+{% for order in orders %}
+<a href="{% url 'quiz:fetch_question' order %}">{{order}}</a>
+{% endfor %}
+<h3>Question No {{question.0}}</h3>
+<p>
+<form method="POST">
+  <p>{{ question.1.question | linebreaks }}</p>
+    {% for ans in form.answers %}
+    <p>
+      {{ ans.tag }}
+      <label for="{{ radio.id_for_label }}">{{ ans.choice_label }}</label>
+    </p>
+    {% endfor %}
+    {% csrf_token %}
+
+  <input type="submit" value="SAVE >>">
+</form>
+</p>
+
+<p><a href="{% url 'quiz:submit_quiz' %}">SUBMIT</a></p>
+<p><a href="{% url 'quiz:exit_quiz' %}">EXIT</a></p>
+{% endblock %}
